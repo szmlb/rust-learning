@@ -3,12 +3,11 @@ fn main() {
 
     // Get input
     println!("Type a number of pair: ");
-    let mut input=String::new();
+    let mut input = String::new();
     io::stdin().read_line(&mut input).expect("Failed to read line");
-    let n: u32 = input.trim().parse().expect("Wanted a number");
+    let n: usize = input.trim().parse().expect("Wanted a number");
 
-    let mut x = Vec::new();
-    let mut y = Vec::new();
+    let mut data = Vec::new();
 
     for _i in 0..n {
         let mut input_x = String::new();
@@ -18,24 +17,25 @@ fn main() {
 
         let x_in: f64 = input_x.trim().parse().expect("Wanted a number");
         let y_in: f64 = input_y.trim().parse().expect("Wanted a number");
+        let pair = (x_in, y_in);
         
-        x.push(x_in);
-        y.push(y_in);
-
+        data.push(pair);
     }
 
+    // Check input data
     println!("Input data:");
-    for i in 0..n {
-        println!("({}, {})", x[i as usize], y[i as usize])
+    for pair in data.iter() {
+        println!("({}, {})", pair.0, pair.1)
     }
 
     // Initialization with large value
-    let mut minimum_dist = 100000000.0;
+    let mut minimum_dist = std::f64::MAX;
 
+    // Using index access
     for i in 0..n {
         for j in i+1..n {
             // distance between (x[i],  y[i]) and (x[j], y[j])
-            let dist_i_j: f64 = calc_dist(x[i as usize],  y[i as usize],  x[j as usize],  y[j as usize]);
+            let dist_i_j: f64 = calc_dist(data[i].0,  data[i].1,  data[j].0,  data[j].1);
 
             // compare dist_i_j with a tentative minimum minimum_dist
             if dist_i_j < minimum_dist {

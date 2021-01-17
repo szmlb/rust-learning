@@ -29,12 +29,10 @@ fn main() {
     read_input(&mut input);
     let v: u64 = parse_input_u64(&input);
 
-    // Initialization with false
-    let mut exist = false;
     for val in data.iter().enumerate() {
         if val.1 == &v {
-            exist = true;
             find_id = val.0 as i64;
+            break;
         }
     }
 

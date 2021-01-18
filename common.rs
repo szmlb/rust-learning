@@ -7,6 +7,13 @@ pub fn read_input_f64() -> f64{
     return val;
 }
 
+pub fn read_input_i64() -> i64{
+    let mut input = String::new();
+    read_input(&mut input);
+    let val: i64 = parse_input_i64(&input);
+    return val;
+}
+
 pub fn read_input_u64() -> u64{
     let mut input = String::new();
     read_input(&mut input);
@@ -26,6 +33,10 @@ pub fn read_input(string: &mut String){
 }
 
 pub fn parse_input_f64(input: &String) -> f64{
+    return input.trim().parse().expect("Wanted a number");
+}
+
+pub fn parse_input_i64(input: &String) -> i64{
     return input.trim().parse().expect("Wanted a number");
 }
 

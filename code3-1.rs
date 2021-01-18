@@ -1,32 +1,24 @@
-use std::io;
+mod common;
+
 fn main() {
 
     // Get input
     println!("Type a number of data: ");
-    let mut input = String::new();
-    read_input(&mut input);
-    let n: usize = parse_input_usize(&input);
-    let mut data = Vec::new();
+    let n: usize = common::read_input_usize();
 
     println!("Type each data: ");
-    for _i in 0..n {
-        let mut input = String::new();
-        read_input(&mut input);
-        let val: u64 = parse_input_u64(&input);
-        data.push(val);
-    }
+    let mut data = Vec::with_capacity(n);
+    data.resize(n, 0);
+    for i in 0..n {data[i] = common::read_input_u64();}
+
+    println!("Type target data: ");
+    let v: u64 = common::read_input_u64();
 
     // Check input data
     println!("Input data:");
     for val in data.iter() {
         println!("{}", val);
     }
-
-
-    println!("Type target data: ");
-    let mut input = String::new();
-    read_input(&mut input);
-    let v: u64 = parse_input_u64(&input);
 
     // Initialization with false
     let mut exist = false;
@@ -42,16 +34,4 @@ fn main() {
     else{
         println!("No");
     }
-}
-
-fn read_input(string: &mut String){
-    io::stdin().read_line(string).expect("Failed to read line");
-}
-
-fn parse_input_usize(input: &String) -> usize{
-    return input.trim().parse().expect("Wanted a number");
-}
-
-fn parse_input_u64(input: &String) -> u64{
-    return input.trim().parse().expect("Wanted a number");
 }

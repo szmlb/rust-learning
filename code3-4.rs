@@ -1,20 +1,21 @@
-use std::io;
+mod common;
+
 fn main() {
 
     // Get input
     println!("Type a number of data: ");
-    let n: usize = read_input_usize();
+    let n: usize = common::read_input_usize();
 
     println!("Type a minimum sum number: ");
-    let k: u64 = read_input_u64();
+    let k: u64 = common::read_input_u64();
 
     println!("Type each data: ");
     let mut data_a = Vec::with_capacity(n);
     let mut data_b = Vec::with_capacity(n);
     data_a.resize(n, 0);
     data_b.resize(n, 0);
-    for i in 0..n {data_a[i] = read_input_u64();}
-    for i in 0..n {data_b[i] = read_input_u64();}
+    for i in 0..n {data_a[i] = common::read_input_u64();}
+    for i in 0..n {data_b[i] = common::read_input_u64();}
 
     // Check input data
     println!("Input data:");
@@ -42,30 +43,4 @@ fn main() {
     }
 
     println!("{}", min_value);
-}
-
-fn read_input_u64() -> u64{
-    let mut input = String::new();
-    read_input(&mut input);
-    let val: u64 = parse_input_u64(&input);
-    return val;
-}
-
-fn read_input_usize() -> usize{
-    let mut input = String::new();
-    read_input(&mut input);
-    let val: usize = parse_input_usize(&input);
-    return val;
-}
-
-fn read_input(string: &mut String){
-    io::stdin().read_line(string).expect("Failed to read line");
-}
-
-fn parse_input_usize(input: &String) -> usize{
-    return input.trim().parse().expect("Wanted a number");
-}
-
-fn parse_input_u64(input: &String) -> u64{
-    return input.trim().parse().expect("Wanted a number");
 }

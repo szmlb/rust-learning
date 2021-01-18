@@ -1,10 +1,10 @@
-use std::io;
+mod common;
+
 fn main() {
 
     println!("Type loop number: ");
-    let mut input=String::new();
-    io::stdin().read_line(&mut input).expect("Error");
-    let n: u32 = input.trim().parse().expect("Wanted a number");
+    let n: u64 = common::read_input_u64();
+
     println!("Input loop number: {}", n);
 
     let mut count = 0;

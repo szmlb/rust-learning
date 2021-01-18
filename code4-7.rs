@@ -1,6 +1,6 @@
 fn main() {
 
-    let mut f = Vec::with_capacity(50);
+    let mut f: Vec<i64> = Vec::with_capacity(50);
     f.resize(50, 0);
 
     f[0] = 0;

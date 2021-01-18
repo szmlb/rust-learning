@@ -2,10 +2,7 @@ mod common;
 
 fn main() {
 
-    
-
-    // Get input
-    println!("Type a number of pair: ");
+    // Get input println!("Type a number of pair: ");
     let n: usize = common::read_input_usize();
 
     println!("Type each pair data: ");

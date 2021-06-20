@@ -1,4 +1,4 @@
-mod common;
+use common;
 
 fn chmin<T: Ord>(a: T, b: T) -> T{
     if a > b
@@ -32,15 +32,20 @@ fn main() {
     dp[0] = 0;
 
     // loop
-    for i in 1..n 
+    for i in 0..n
     {
-        dp[i] = chmin(dp[i], dp[i - 1] + (h[i] - h[i-1]).abs());
-        if i > 1 
+
+        if i + 1 < n
         {
-            dp[i] = chmin(dp[i], dp[i - 2] + (h[i] - h[i-2]).abs());
+            dp[i+1] = chmin(dp[i+1], dp[i] + (h[i] - h[i+1]).abs());
+        }
+
+        if i + 2 < n
+        {
+            dp[i+2] = chmin(dp[i+2], dp[i] + (h[i] - h[i+2]).abs());
         }
     }
-        
+
     println!("{}", dp[n-1]);
 
 }

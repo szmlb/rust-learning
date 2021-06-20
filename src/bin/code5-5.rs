@@ -1,4 +1,4 @@
-mod common;
+use common;
 
 fn chmin<T: Ord>(a: T, b: T) -> T{
     if a > b

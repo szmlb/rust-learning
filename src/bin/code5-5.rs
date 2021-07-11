@@ -21,8 +21,8 @@ fn rec(i: usize, h: &Vec<i64>) -> i64{
     }
 
     // initialize variable for storing an answer, with INF
-    let INF = 1 << 60;
-    let mut res = INF;
+    let inf = 1 << 60;
+    let mut res = inf;
 
     // In case moved from step i-1
     res = chmin(res, rec(i-1, &h) + (h[i] - h[i-1]).abs());
@@ -49,7 +49,7 @@ fn main() {
     for i in 0..n {h[i] = common::read_input();}
 
     // Brute force search
-    let mut res = rec(n-1, &h);
+    let res = rec(n-1, &h);
 
     println!("{}", res);
 

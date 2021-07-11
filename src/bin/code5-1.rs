@@ -2,7 +2,7 @@ use common;
 
 fn main() {
 
-    let INF = 1 << 60;
+    let inf = 1 << 60;
 
     // Get input
     println!("Type a number of data: ");
@@ -15,7 +15,7 @@ fn main() {
 
     // Define array dp, initialized with inf
     let mut dp: Vec<i64> = Vec::with_capacity(n);
-    dp.resize(n, INF);
+    dp.resize(n, inf);
 
     // Initial condition
     dp[0] = 0;

@@ -15,10 +15,10 @@ fn chmin<T: Ord>(a: T, b: T) -> T{
 fn rec(i: usize, h: &Vec<i64>, dp: &mut Vec<i64>) -> i64{
 
     // initialize variable for storing an answer, with INF
-    let INF = 1 << 60;
+    let inf = 1 << 60;
 
     // return DP value if it is updated
-    if dp[i] < INF
+    if dp[i] < inf
     {
         return dp[i];
     }
@@ -30,7 +30,7 @@ fn rec(i: usize, h: &Vec<i64>, dp: &mut Vec<i64>) -> i64{
     }
 
     // Initialize as with INF
-    let mut res = INF;
+    let mut res = inf;
 
     // In case moved from step i-1
     res = chmin(res, rec(i-1, &h, dp) + (h[i] - h[i-1]).abs());
@@ -54,7 +54,7 @@ fn main() {
     // ans = 8
 
     // initialize variable for storing an answer, with INF
-    let INF = 1 << 60;
+    let inf = 1 << 60;
 
     // Get input
     println!("Type a number of data: ");
@@ -67,7 +67,7 @@ fn main() {
 
     // A table for input data / memo
     let mut dp: Vec<i64> = Vec::with_capacity(n);
-    dp.resize(n, INF);
+    dp.resize(n, inf);
 
     // Brute force search
     let res = rec(n-1, &h, &mut dp);

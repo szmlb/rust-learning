@@ -12,10 +12,7 @@ fn chmin<T: Ord>(a: T, b: T) -> T{
 }
 
 // rec(i) : minimum cost to move from step 0 to step i
-fn rec(i: usize, h: &Vec<i64>, dp: &mut Vec<i64>) -> i64{
-
-    // initialize variable for storing an answer, with INF
-    let inf = 1 << 60;
+fn rec(i: usize, h: &Vec<i64>, dp: &mut Vec<i64>, inf: i64) -> i64{
 
     // return DP value if it is updated
     if dp[i] < inf
@@ -33,12 +30,12 @@ fn rec(i: usize, h: &Vec<i64>, dp: &mut Vec<i64>) -> i64{
     let mut res = inf;
 
     // In case moved from step i-1
-    res = chmin(res, rec(i-1, &h, dp) + (h[i] - h[i-1]).abs());
+    res = chmin(res, rec(i-1, &h, dp, inf) + (h[i] - h[i-1]).abs());
 
     // In case moved from step i-2
     if i > 1
     {
-        res = chmin(res, rec(i-2, &h, dp) + (h[i] - h[i-2]).abs());
+        res = chmin(res, rec(i-2, &h, dp, inf) + (h[i] - h[i-2]).abs());
     }
 
     dp[i] = res;
@@ -70,7 +67,7 @@ fn main() {
     dp.resize(n, inf);
 
     // Brute force search
-    let res = rec(n-1, &h, &mut dp);
+    let res = rec(n-1, &h, &mut dp, inf);
 
     println!("{}", res);
 
